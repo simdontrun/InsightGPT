@@ -55,6 +55,15 @@ class DataCleaner:
 
          return self.df
     
+    def save_cleaned_data(self, output_path):
+         """
+         Save cleaned dataframe to CSV
+         """
+
+         self.df.to_csv(output_path, index=False)
+
+         print(f"Cleaned data saved to {output_path}")
+    
 
             
                      

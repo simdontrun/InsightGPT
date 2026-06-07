@@ -10,6 +10,8 @@ cleaner.remove_duplicates()
 
 cleaner.fill_missing_values()
 
-cleaned_df = cleaner.standardize_dates("Order_Date")
+cleaner.standardize_dates("Order_Date")
 
-print(cleaned_df)
+cleaner.save_cleaned_data(
+    "data/cleaned/clean_sales.csv"
+)
