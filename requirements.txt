@@ -1,0 +1,13 @@
+pandas
+numpy
+sqlalchemy
+pyodbc
+streamlit
+plotly
+prophet
+langchain
+langchain-community
+google-generativeai
+faiss-cpu
+pypdf
+python-dotenv
