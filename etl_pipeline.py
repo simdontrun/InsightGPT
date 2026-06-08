@@ -1,48 +1,45 @@
 import pandas as pd
 
 from ingestion.validator import DataValidator
+from ingestion.business_validator import BusinessValidator
 from ingestion.cleaner import DataCleaner
 
+# ----------------------
+# STEP 1: LOAD DATA
+# ----------------------
+df = pd.read_csv("data/raw/SampleSuperstore.csv")
 
-def run_pipeline():
+print("\n📥 DATA LOADED:", df.shape)
 
-    print("Loading dataset...")
+# ----------------------
+# STEP 2: BASIC VALIDATION
+# ----------------------
+validator = DataValidator(df)
+validator.run_checks()
 
-    df = pd.read_csv("data/raw/sample_sales.csv")
+# ----------------------
+# STEP 3: BUSINESS VALIDATION
+# ----------------------
+business_validator = BusinessValidator(df)
+issues = business_validator.run_all_checks()
 
-    print("Running validation checks...")
+# STOP PIPELINE IF CRITICAL ISSUES EXIST
+if issues:
+    print("\n❌ Pipeline stopped due to business rule violations.")
+    exit()
 
-    validator = DataValidator(df)
+# ----------------------
+# STEP 4: CLEANING
+# ----------------------
+cleaner = DataCleaner(df)
 
-    validator.check_missing_values()
-    validator.check_duplicates()
+df = cleaner.remove_duplicates()
+df = cleaner.fill_missing_values()
+df = cleaner.standardize_dates()
 
-    required_columns = [
-        "Order_ID",
-        "Order_Date",
-        "Product",
-        "Sales",
-        "Region"
-    ]
+# ----------------------
+# STEP 5: SAVE OUTPUT
+# ----------------------
+cleaner.save_cleaned_data("data/processed/cleaned_superstore.csv")
 
-    validator.check_required_columns(required_columns)
-
-    validator.validate_date_column("Order_Date")
-
-    print("Cleaning data...")
-
-    cleaner = DataCleaner(df)
-
-    cleaner.remove_duplicates()
-    cleaner.fill_missing_values()
-    cleaner.standardize_dates("Order_Date")
-
-    cleaner.save_cleaned_data(
-        "data/cleaned/clean_sales.csv"
-    )
-
-    print("ETL Pipeline Completed Successfully")
-
-
-if __name__ == "__main__":
-    run_pipeline()
+print("\n🎉 ETL PIPELINE COMPLETED SUCCESSFULLY")
