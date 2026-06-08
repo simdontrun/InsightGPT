@@ -1,106 +1,64 @@
 # InsightGPT
 
-An AI-powered business intelligence platform that transforms raw sales data into actionable insights using Azure SQL, analytics, and LLM-powered explanations.
+AI-Powered Decision Intelligence Platform
 
-## Project Overview
+## Overview
 
-InsightGPT is designed to help business users interact with sales data through intelligent analytics and natural language insights.
+InsightGPT is an AI-powered analytics platform that enables business users to analyze sales and operational data using natural language.
 
-The platform performs:
+The platform combines:
 
-- Data Extraction from CSV datasets
-- Data Validation and Quality Checks
-- Data Cleaning and Transformation
-- Data Loading into Azure SQL Database
-- Analytics and KPI Generation
-- AI-Powered Business Insights (Upcoming)
+* Data Engineering
+* Business Intelligence
+* Natural Language SQL
+* AI-Powered Insights
+* Forecasting
+* Document Intelligence (RAG)
 
----
+## Current Status
 
-## ETL Pipeline
+### Module 1 – Data Ingestion & Cleaning ✅
 
-### Extract
+Completed:
 
-- Loaded Superstore sales dataset using Pandas
+* CSV data ingestion
+* Data validation
+* Data cleaning and transformation
+* Azure SQL Database integration
+* SQL table creation
+* Data loading into SQL Server
+* Data verification
 
-### Transform
+### Verification
 
-- Performed data validation checks
-- Cleaned and standardized dataset columns
-- Handled data quality issues
-
-### Load
-
-- Connected Python application to Azure SQL Database
-- Created database tables automatically
-- Loaded processed data into Azure SQL
-- Verified successful data ingestion
-
----
-
-## Current Progress
-
-### Completed
-
-- [x] Project Setup
-- [x] ETL Pipeline
-- [x] Azure SQL Integration
-- [x] Data Validation Layer
-- [x] Data Cleaning Layer
-
-### In Progress
-
-- [ ] Analytics Engine
-- [ ] KPI Generation
-- [ ] AI Insights Layer
-- [ ] Interactive Dashboard
-
----
+* Source Dataset Rows: 9994
+* SQL Database Rows: 9994
 
 ## Tech Stack
 
 ### Data Engineering
 
-- Python
-- Pandas
-- PyODBC
-
-### Cloud
-
-- Azure SQL Database
+* Python
+* Pandas
+* NumPy
+* PyODBC
 
 ### Database
 
-- SQL Server
+* Microsoft SQL Server (Azure SQL Database)
 
 ### Development Tools
 
-- VS Code
-- Git
-- GitHub
+* VS Code
+* Git
+* GitHub
 
----
+## Upcoming Modules
 
-## Project Structure
-
-```text
-InsightGPT/
-│
-├── data/
-├── database/
-├── validators/
-├── transformers/
-├── reports/
-├── test_db.py
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Next Steps
-
-- Build analytics layer
-- Generate business KPIs
-- Integrate AI-powered insights
-- Develop interactive dashboard
+* Module 2: Business Intelligence Dashboard
+* Module 3: Natural Language SQL Analytics
+* Module 4: AI Root Cause Analysis
+* Module 5: Recommendation Engine
+* Module 6: Forecasting Center
+* Module 7: Document Intelligence (RAG)
+* Module 8: Executive Reporting
