@@ -53,12 +53,45 @@ Completed:
 * Git
 * GitHub
 
+## Module 2: Business Intelligence Dashboard
+
+### Features Implemented
+
+* Revenue KPI Dashboard
+* Profit KPI Dashboard
+* Profit Margin KPI Dashboard
+* Regional Revenue Analysis
+* Category Revenue Analysis
+* Product Performance Analysis
+* Interactive Plotly Visualizations
+* Live Azure SQL Integration
+
+### Business Insights Generated
+
+* Total Revenue: $2.29M
+* Total Profit: $286K
+* Profit Margin: 12.47%
+* West Region is the highest revenue contributor
+* Technology is the highest-performing category
+* Phones are the top revenue-generating product
+* Tables and Bookcases show negative profitability
+
+### Technologies Used
+
+* Streamlit
+* Plotly
+* Python
+* Pandas
+* Azure SQL Database
+* PyODBC
+
+
 ## Upcoming Modules
 
-* Module 2: Business Intelligence Dashboard
 * Module 3: Natural Language SQL Analytics
 * Module 4: AI Root Cause Analysis
 * Module 5: Recommendation Engine
 * Module 6: Forecasting Center
 * Module 7: Document Intelligence (RAG)
 * Module 8: Executive Reporting
+
