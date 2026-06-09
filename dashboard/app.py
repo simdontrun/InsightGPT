@@ -12,6 +12,10 @@ from nl_sql.sql_validator import validate_sql
 from nl_sql.sql_executor import execute_query
 from nl_sql.explanation_generator import generate_explanation
 
+from root_cause.root_cause_service import (
+    get_root_cause_analysis
+)
+
 
 # ----------------------------------
 # PAGE CONFIG
@@ -215,3 +219,38 @@ if st.button("Analyze"):
         st.warning(
             "Explanation unavailable (Gemini quota exceeded or service unavailable)."
         )
+
+st.divider()
+
+st.subheader("🚨 Root Cause Analysis")
+
+loss_products, analysis = get_root_cause_analysis()
+
+if loss_products:
+
+    root_df = pd.DataFrame(
+        loss_products,
+        columns=[
+            "Product",
+            "Revenue",
+            "Profit",
+            "Avg Discount",
+            "Quantity"
+        ]
+    )
+
+    st.dataframe(
+        root_df,
+        use_container_width=True
+    )
+
+    st.write("### Executive Analysis")
+
+    if analysis:
+        st.info(analysis)
+
+else:
+    st.warning(
+        "Root cause analysis unavailable."
+    )
+
