@@ -7,8 +7,16 @@ from analytics.region_service import get_region_data
 from analytics.category_service import get_category_data
 from analytics.product_service import get_product_data
 
+from nl_sql.gemini_sql_generator import generate_sql
+from nl_sql.sql_validator import validate_sql
+from nl_sql.sql_executor import execute_query
+from nl_sql.explanation_generator import generate_explanation
 
-# Page Title
+
+# ----------------------------------
+# PAGE CONFIG
+# ----------------------------------
+
 st.set_page_config(
     page_title="InsightGPT",
     page_icon="📊",
@@ -16,45 +24,48 @@ st.set_page_config(
 )
 
 
-# Dashboard Header
+# ----------------------------------
+# HEADER
+# ----------------------------------
+
 st.title("📊 InsightGPT")
 st.subheader("AI-Powered Decision Intelligence Platform")
 
 
-# Fetch KPI Data
+# ----------------------------------
+# KPI SECTION
+# ----------------------------------
+
 kpis = get_kpis()
 
 if not kpis:
     st.error("Database connection failed")
     st.stop()
 
-
-# Create 3 KPI Columns
 col1, col2, col3 = st.columns(3)
 
-
-# Revenue KPI
 with col1:
     st.metric(
         label="Total Revenue",
         value=f"${kpis['revenue']:,.2f}"
     )
 
-
-# Profit KPI
 with col2:
     st.metric(
         label="Total Profit",
         value=f"${kpis['profit']:,.2f}"
     )
 
-
-# Margin KPI
 with col3:
     st.metric(
         label="Profit Margin",
         value=f"{kpis['margin']:.2f}%"
     )
+
+
+# ----------------------------------
+# REGION CHART
+# ----------------------------------
 
 st.divider()
 
@@ -76,6 +87,11 @@ st.plotly_chart(
     use_container_width=True
 )
 
+
+# ----------------------------------
+# CATEGORY CHART
+# ----------------------------------
+
 st.divider()
 
 st.subheader("📦 Category Revenue Analysis")
@@ -96,6 +112,11 @@ st.plotly_chart(
     use_container_width=True
 )
 
+
+# ----------------------------------
+# PRODUCT CHART
+# ----------------------------------
+
 st.divider()
 
 st.subheader("🏆 Top Product Performance")
@@ -115,3 +136,82 @@ st.plotly_chart(
     fig,
     use_container_width=True
 )
+
+
+# ----------------------------------
+# AI ANALYTICS SECTION
+# ----------------------------------
+
+st.divider()
+
+st.subheader("🤖 Ask InsightGPT")
+
+question = st.text_input(
+    "Ask a business question"
+)
+
+if st.button("Analyze"):
+
+    if not question:
+        st.warning("Please enter a question.")
+        st.stop()
+
+    # Generate SQL
+    sql_query = generate_sql(question)
+
+    if not sql_query:
+        st.error(
+            "Gemini quota exceeded or service temporarily unavailable. Please try again later."
+        )
+        st.stop()
+
+    st.write("### Generated SQL")
+
+    st.code(sql_query)
+
+    # Validate SQL
+    if not validate_sql(sql_query):
+        st.error("SQL validation failed")
+        st.stop()
+
+    # Execute SQL
+    results = execute_query(sql_query)
+
+    if results is None:
+        st.error("Database query failed")
+        st.stop()
+
+    # Display Results
+    st.write("### Results")
+
+    if len(results) == 1:
+
+        value = results[0][0]
+
+        if isinstance(value, (int, float)):
+            st.success(f"${value:,.2f}")
+        else:
+            st.success(str(value))
+
+    else:
+        st.write(results)
+
+    # AI Explanation
+    st.write("### 🤖 AI Business Interpretation")
+
+    try:
+
+        explanation = generate_explanation(
+            question,
+            results
+        )
+
+        if explanation:
+            st.info(explanation)
+        else:
+            st.warning("Explanation unavailable.")
+
+    except Exception:
+        st.warning(
+            "Explanation unavailable (Gemini quota exceeded or service unavailable)."
+        )

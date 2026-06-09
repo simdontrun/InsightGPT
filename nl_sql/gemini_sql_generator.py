@@ -4,8 +4,11 @@ from dotenv import load_dotenv
 from google import genai
 
 
+# Load environment variables
 load_dotenv()
 
+
+# Create Gemini client
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
@@ -14,7 +17,7 @@ client = genai.Client(
 def generate_sql(question):
 
     prompt = f"""
-You are a SQL Server expert.
+You are an expert SQL Server analyst.
 
 Database Table:
 Superstore
@@ -38,24 +41,38 @@ Rules:
 1. Generate ONLY SQL.
 2. Use SQL Server syntax.
 3. Only generate SELECT statements.
-4. Never generate DELETE, UPDATE, DROP, INSERT, ALTER, or TRUNCATE.
-5. Return SQL only.
+4. Never generate DELETE, UPDATE, INSERT, DROP, ALTER, CREATE, or TRUNCATE.
+5. Do not explain anything.
+6. Do not include markdown.
+7. Do not include ```sql.
+8. Return SQL only.
 
 User Question:
 {question}
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash-lite",
-        contents=prompt
-    )
+    try:
 
-    if response.text:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-lite",
+            contents=prompt
+        )
+
+        if not response.text:
+            print("❌ Gemini returned empty response")
+            return None
+
         sql = response.text.strip()
 
+        # Remove markdown if Gemini adds it anyway
         sql = sql.replace("```sql", "")
         sql = sql.replace("```", "")
 
         return sql.strip()
 
-    return None
+    except Exception as e:
+
+        print("\n❌ Gemini API Error")
+        print(e)
+
+        return None
