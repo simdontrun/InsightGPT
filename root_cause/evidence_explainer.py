@@ -48,4 +48,9 @@ Rules:
 
         print("Gemini Error:", e)
 
-        return None
+        return """
+Executive analysis temporarily unavailable.
+
+The AI service quota has been exceeded.
+Business evidence is still displayed above and can be reviewed manually.
+"""

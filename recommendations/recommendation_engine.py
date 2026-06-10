@@ -57,5 +57,10 @@ Rules:
     except Exception as e:
 
         print("Gemini Error:", e)
+  
+        return """
+Recommendations temporarily unavailable.
 
-        return None
+The AI recommendation service has exceeded its current quota.
+Please retry later or upgrade the API plan.
+"""

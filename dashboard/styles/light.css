@@ -1,0 +1,47 @@
+/* ---------- MAIN APP ---------- */
+
+.stApp {
+    background-color: #F5F1E8;
+    color: #1F1F1F;
+}
+
+
+/* ---------- HEADINGS ---------- */
+
+h1, h2, h3 {
+    color: #1F1F1F;
+    font-weight: 700;
+}
+
+
+/* ---------- KPI CARDS ---------- */
+
+[data-testid="metric-container"] {
+    background-color: #FCFAF6;
+    border: 1px solid #E5DFD4;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+
+/* ---------- DATAFRAMES ---------- */
+
+[data-testid="stDataFrame"] {
+    border-radius: 16px;
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.stButton > button {
+    background-color: #111111;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 0.6rem 1rem;
+}
+
+.stButton > button:hover {
+    background-color: #222222;
+}

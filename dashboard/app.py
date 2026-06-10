@@ -2,6 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+from theme_loader import (
+    load_css
+)
+
 from analytics.kpi_service import get_kpis
 from analytics.region_service import get_region_data
 from analytics.category_service import get_category_data
@@ -16,10 +20,9 @@ from root_cause.root_cause_service import (
     get_root_cause_analysis
 )
 
-
-# ----------------------------------
-# PAGE CONFIG
-# ----------------------------------
+from recommendations.recommendation_service import (
+    get_recommendations
+)
 
 st.set_page_config(
     page_title="InsightGPT",
@@ -27,13 +30,86 @@ st.set_page_config(
     layout="wide"
 )
 
+# -----------------------------
+# APP STATE
+# -----------------------------
+
+if "page" not in st.session_state:
+    st.session_state.page = "landing"
+
+if "theme" not in st.session_state:
+    st.session_state.theme = "light"
+
+st.markdown(
+    load_css(
+        st.session_state.theme
+    ),
+    unsafe_allow_html=True
+)
+
+# -----------------------------
+# THEME PICKER
+# -----------------------------
+
+if "theme" not in st.session_state:
+    st.session_state.theme = "light"
+
+dark_mode = st.toggle(
+    "🌙 Dark Mode",
+    key="dark_toggle",
+    value=(st.session_state.theme == "dark")
+)
+
+st.session_state.theme = (
+    "dark"
+    if dark_mode
+    else "light"
+)
+
+st.divider()
+
+# ----------------------------------
+# SIDEBAR
+# ----------------------------------
+
+with st.sidebar:
+
+    st.title("📊 InsightGPT")
+
+    st.markdown("---")
+
+    page = st.radio(
+        "Navigation",
+        [
+            "Dashboard",
+            "AI Analytics",
+            "Root Cause",
+            "Recommendations"
+        ]
+    )
+
+    st.markdown("---")
+
+    dark_mode = st.toggle(
+        "🌙 Dark Mode",
+        value=(st.session_state.theme == "dark")
+    )
+
+    st.session_state.theme = (
+        "dark"
+        if dark_mode
+        else "light"
+    )
+
 
 # ----------------------------------
 # HEADER
 # ----------------------------------
 
 st.title("📊 InsightGPT")
-st.subheader("AI-Powered Decision Intelligence Platform")
+st.caption(
+    "AI-Powered Decision Intelligence Platform"
+)
 
 
 # ----------------------------------
@@ -245,7 +321,10 @@ if loss_products:
     )
 
     st.write("### Executive Analysis")
-
+    
+    st.write(loss_products)
+    st.write(analysis)
+    
     if analysis:
         st.info(analysis)
 
@@ -254,3 +333,18 @@ else:
         "Root cause analysis unavailable."
     )
 
+st.divider()
+
+st.subheader("💡 AI Recommendations")
+
+recommendations = get_recommendations()
+
+if recommendations:
+
+    st.success(recommendations)
+
+else:
+
+    st.warning(
+        "Recommendations unavailable."
+    )
