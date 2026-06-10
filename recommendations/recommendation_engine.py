@@ -3,6 +3,10 @@ import os
 from dotenv import load_dotenv
 from google import genai
 
+from recommendations.risk_analyzer import (
+    analyze_risk
+)
+
 
 load_dotenv()
 
@@ -13,6 +17,10 @@ client = genai.Client(
 
 def generate_recommendations(results):
 
+    risk_summary = analyze_risk(
+        results
+    )
+
     prompt = f"""
 You are a senior business consultant.
 
@@ -21,6 +29,10 @@ The following products are LOSS-MAKING products.
 Evidence:
 
 {results}
+
+Risk Summary:
+
+{risk_summary}
 
 Each row contains:
 
@@ -56,8 +68,11 @@ Rules:
 
     except Exception as e:
 
-        print("Gemini Error:", e)
-  
+        print(
+            "Gemini Error:",
+            e
+        )
+
         return """
 Recommendations temporarily unavailable.
 
