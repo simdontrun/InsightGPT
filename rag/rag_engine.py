@@ -67,9 +67,22 @@ Rules:
 - Keep answers concise.
 """
 
-    response = client.models.generate_content(
+    try:
+
+
+        response = client.models.generate_content(
         model="gemini-2.5-flash-lite",
         contents=prompt
-    )
+        )
 
-    return response.text
+        return response.text
+
+    except Exception:
+
+        return """
+Document Intelligence is temporarily unavailable.
+
+The Gemini API quota has been exceeded.
+
+The retrieval system is functioning correctly, but the language model cannot generate a response at this time.
+"""

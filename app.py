@@ -24,6 +24,14 @@ from recommendations.recommendation_service import (
     get_recommendations
 )
 
+from forecasting.forecast_engine import (
+    generate_forecast
+)
+
+from rag.rag_engine import (
+    ask_document
+)
+
 st.set_page_config(
     page_title="InsightGPT",
     page_icon="📊",
@@ -336,9 +344,8 @@ st.divider()
 
 st.subheader("💡 AI Recommendations")
 
+
 recommendations = get_recommendations()
-st.write("Recommendations Debug:")
-st.write(recommendations)
 
 if recommendations:
 
@@ -349,3 +356,106 @@ else:
     st.warning(
         "Recommendations unavailable."
     )
+
+# ----------------------------------
+# FORECAST CENTER
+# ----------------------------------
+
+st.divider()
+
+st.subheader("📈 Forecast Center")
+
+forecast_df = generate_forecast()
+
+if forecast_df is not None:
+
+    forecast_chart = px.line(
+        forecast_df,
+        x="ds",
+        y="yhat",
+        title="30-Day Sales Forecast"
+    )
+
+    st.plotly_chart(
+        forecast_chart,
+        use_container_width=True
+    )
+
+    st.dataframe(
+        forecast_df.tail(10),
+        use_container_width=True
+    )
+
+else:
+
+    st.warning(
+        "Forecast unavailable."
+    )
+
+# ----------------------------------
+# EXECUTIVE REPORT DOWNLOAD
+# ----------------------------------
+
+st.divider()
+
+st.subheader("📄 Executive Report")
+
+try:
+
+    with open(
+        "reports/Executive_Report.pdf",
+        "rb"
+    ) as pdf_file:
+
+        st.download_button(
+            label="📥 Download Executive Report",
+            data=pdf_file,
+            file_name="Executive_Report.pdf",
+            mime="application/pdf"
+        )
+
+except FileNotFoundError:
+
+    st.warning(
+        "Executive report not found. Generate the PDF first."
+    )
+
+# ----------------------------------
+# DOCUMENT INTELLIGENCE (RAG)
+# ----------------------------------
+
+st.divider()
+
+st.subheader("📚 Document Intelligence")
+
+rag_question = st.text_input(
+    "Ask a question about the uploaded business report"
+)
+
+if st.button(
+    "📖 Ask Document"
+):
+
+    if not rag_question:
+
+        st.warning(
+            "Please enter a question."
+        )
+
+    else:
+
+        try:
+
+            answer = ask_document(
+                rag_question
+            )
+
+            st.success(
+                answer
+            )
+
+        except Exception as e:
+
+            st.error(
+                f"Document QA failed: {str(e)}"
+            )
