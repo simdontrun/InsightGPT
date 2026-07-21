@@ -1,0 +1,304 @@
+/* ========== FONTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ========== ROOT ========== */
+:root {
+    --bg:           #0D0F15;
+    --bg-card:      #161923;
+    --bg-card2:     #1C2030;
+    --border:       #262C3E;
+    --text:         #EEF0F5;
+    --text-muted:   #9BA3BC;
+    --accent:       #C8F169;
+    --accent-dark:  #111111;
+    --accent-hover: #B9E858;
+    --success:      #4ADE80;
+    --warning:      #FBBF24;
+    --radius:       16px;
+    --shadow:       0 2px 16px rgba(0,0,0,0.3);
+}
+
+/* ========== APP SHELL ========== */
+.stApp {
+    background-color: var(--bg) !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text) !important;
+}
+
+/* ========== BODY TEXT — catch all prose in the main content area ========== */
+.stApp p,
+.stApp span,
+.stApp div,
+.stApp li,
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] span,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] p {
+    color: var(--text) !important;
+}
+
+/* Muted elements stay muted */
+[data-testid="stCaptionContainer"] p,
+.stCaption {
+    color: var(--text-muted) !important;
+}
+
+/* Divider */
+hr { border-color: var(--border) !important; }
+
+/* ========== SIDEBAR ========== */
+[data-testid="stSidebar"] {
+    background-color: #10121A !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+/* Target specific sidebar text elements — avoid the nuclear * selector
+   which would override nav active colours and icon tints */
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span:not(.ig-nav-item *),
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] .stMarkdown {
+    color: var(--text) !important;
+}
+/* Nav items manage their own colours via .ig-nav-item and .ig-nav-item.active */
+
+/* ========== HEADINGS ========== */
+h1, h2, h3 {
+    color: var(--text) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+}
+
+h1 { font-size: 2rem !important; }
+h2, h3 { font-size: 1.25rem !important; }
+
+/* ========== KPI METRIC CARDS ========== */
+[data-testid="metric-container"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: 24px 20px !important;
+    box-shadow: var(--shadow) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+[data-testid="metric-container"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5) !important;
+    border-color: #3A4158 !important;
+}
+[data-testid="metric-container"] label {
+    color: var(--text-muted) !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+}
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    color: var(--text) !important;
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+}
+
+/* ========== BUTTONS ========== */
+.stButton > button {
+    background-color: var(--accent) !important;
+    color: #111111 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.55rem 1.4rem !important;
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    letter-spacing: 0.01em !important;
+    transition: background 0.15s ease, transform 0.1s ease !important;
+    cursor: pointer !important;
+}
+/* Streamlit wraps button label in a <p> — must override our broad p rule */
+.stButton > button p,
+.stButton > button span,
+.stButton > button div {
+    color: #111111 !important;
+}
+.stButton > button:hover {
+    background-color: var(--accent-hover) !important;
+    color: #111111 !important;
+    transform: translateY(-1px) !important;
+}
+.stButton > button:hover p,
+.stButton > button:hover span {
+    color: #111111 !important;
+}
+.stButton > button:active {
+    transform: translateY(0px) !important;
+}
+
+/* ========== FILE UPLOADER ========== */
+[data-testid="stFileUploader"] {
+    background: var(--bg-card) !important;
+    border: 1.5px dashed var(--border) !important;
+    border-radius: 12px !important;
+}
+[data-testid="stFileUploader"] section {
+    background: var(--bg-card) !important;
+    border-radius: 12px !important;
+}
+[data-testid="stFileUploader"] section > div {
+    background: var(--bg-card) !important;
+}
+/* The inner drop zone / label text */
+[data-testid="stFileUploader"] span,
+[data-testid="stFileUploader"] p,
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] p {
+    color: var(--text) !important;
+}
+/* "Browse files" button inside the uploader */
+[data-testid="stFileUploader"] button,
+[data-testid="stFileUploaderDropzoneInstructions"] button,
+[data-testid="stFileUploaderDropzone"] button {
+    background-color: var(--bg-card2) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+[data-testid="stFileUploader"] button:hover,
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background-color: #262C3E !important;
+    color: var(--text) !important;
+}
+
+/* ========== DOWNLOAD BUTTON ========== */
+[data-testid="stDownloadButton"] > button {
+    background-color: #4ADE80 !important;
+    color: #0D1F15 !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+}
+[data-testid="stDownloadButton"] > button:hover {
+    background-color: #22C55E !important;
+}
+
+/* ========== TEXT INPUT ========== */
+.stTextInput > div > div > input {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    color: var(--text) !important;
+    padding: 0.6rem 1rem !important;
+    font-size: 0.9rem !important;
+}
+.stTextInput > div > div > input:focus {
+    border-color: #4A5270 !important;
+    box-shadow: 0 0 0 3px rgba(200,241,105,0.1) !important;
+}
+.stTextInput > div > div > input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* ========== CODE BLOCK ========== */
+.stCodeBlock {
+    border-radius: 10px !important;
+    border: 1px solid var(--border) !important;
+}
+/* Code block background and text */
+.stCodeBlock pre,
+.stCodeBlock code,
+[data-testid="stCode"] pre,
+[data-testid="stCode"] code,
+[data-testid="stCodeBlock"] pre,
+[data-testid="stCodeBlock"] code {
+    background-color: #0D1117 !important;
+    color: #C8F169 !important;
+    font-size: 0.85rem !important;
+}
+
+/* ========== EXPANDER ========== */
+[data-testid="stExpander"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+}
+/* Expander header row */
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] details > summary {
+    background: var(--bg-card) !important;
+    color: var(--text) !important;
+    border-radius: 12px !important;
+}
+[data-testid="stExpander"] summary p,
+[data-testid="stExpander"] summary span {
+    color: var(--text) !important;
+}
+/* Expander content area */
+[data-testid="stExpander"] details,
+[data-testid="stExpander"] > div {
+    background: var(--bg-card) !important;
+    color: var(--text) !important;
+}
+/* Expander toggle arrow */
+[data-testid="stExpander"] svg {
+    fill: var(--text) !important;
+    stroke: var(--text) !important;
+}
+
+/* ========== DATAFRAME ========== */
+[data-testid="stDataFrame"] {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* ========== ALERTS / INFO BOXES ========== */
+[data-testid="stAlert"] {
+    border-radius: 12px !important;
+    border-left-width: 4px !important;
+}
+
+/* ========== TOGGLE ========== */
+[data-testid="stToggle"] label {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: var(--text-muted) !important;
+}
+
+/* ========== DIVIDER ========== */
+hr {
+    border-color: var(--border) !important;
+    opacity: 0.6 !important;
+}
+
+/* ========== RADIO ========== */
+[data-testid="stRadio"] label {
+    color: var(--text) !important;
+}
+
+/* ========== CAPTION ========== */
+.stCaption, [data-testid="stCaptionContainer"] {
+    color: var(--text-muted) !important;
+}
+
+/* ========== SUCCESS / WARNING / ERROR ========== */
+[data-testid="stSuccess"] {
+    background: #0D2E1C !important;
+    border-left: 4px solid #4ADE80 !important;
+    color: #86EFAC !important;
+    border-radius: 12px !important;
+}
+[data-testid="stWarning"] {
+    background: #1F1A0A !important;
+    border-left: 4px solid #FBBF24 !important;
+    color: #FDE68A !important;
+    border-radius: 12px !important;
+}
+[data-testid="stError"] {
+    border-radius: 12px !important;
+}
+[data-testid="stInfo"] {
+    background: var(--bg-card2) !important;
+    border-left: 4px solid #4A5270 !important;
+    border-radius: 12px !important;
+    color: var(--text) !important;
+}

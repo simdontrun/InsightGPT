@@ -1,0 +1,192 @@
+/* ========== FONTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ========== ROOT ========== */
+:root {
+    --bg:           #F5F0E8;
+    --bg-card:      #FDFAF4;
+    --bg-card2:     #F0EBE0;
+    --border:       #E2D9C8;
+    --text:         #1A1814;
+    --text-muted:   #7A7060;
+    --accent:       #1A1814;
+    --accent-hover: #3A3530;
+    --success:      #2E7D52;
+    --warning:      #B45309;
+    --radius:       16px;
+    --shadow:       0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ========== APP SHELL ========== */
+.stApp {
+    background-color: var(--bg) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* ========== SIDEBAR ========== */
+[data-testid="stSidebar"] {
+    background-color: #EDE8DC !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+/* Target specific sidebar text elements — avoid the nuclear * selector
+   which would override nav active colours and icon tints */
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span:not(.ig-nav-item *),
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] .stMarkdown {
+    color: var(--text) !important;
+}
+/* Nav items manage their own colours via .ig-nav-item and .ig-nav-item.active */
+
+/* ========== HEADINGS ========== */
+h1, h2, h3 {
+    color: var(--text) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+}
+
+h1 { font-size: 2rem !important; }
+h2, h3 { font-size: 1.25rem !important; }
+
+/* ========== KPI METRIC CARDS ========== */
+[data-testid="metric-container"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: 24px 20px !important;
+    box-shadow: var(--shadow) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+[data-testid="metric-container"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1) !important;
+}
+[data-testid="metric-container"] label {
+    color: var(--text-muted) !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+}
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    color: var(--text) !important;
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+}
+
+/* ========== BUTTONS ========== */
+.stButton > button {
+    background-color: var(--accent) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.55rem 1.4rem !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    letter-spacing: 0.01em !important;
+    transition: background 0.15s ease, transform 0.1s ease !important;
+    cursor: pointer !important;
+}
+.stButton > button:hover {
+    background-color: var(--accent-hover) !important;
+    transform: translateY(-1px) !important;
+}
+.stButton > button:active {
+    transform: translateY(0px) !important;
+}
+
+/* ========== DOWNLOAD BUTTON ========== */
+[data-testid="stDownloadButton"] > button {
+    background-color: #2E7D52 !important;
+    color: white !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+}
+[data-testid="stDownloadButton"] > button:hover {
+    background-color: #235E3E !important;
+}
+
+/* ========== TEXT INPUT ========== */
+.stTextInput > div > div > input {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    color: var(--text) !important;
+    padding: 0.6rem 1rem !important;
+    font-size: 0.9rem !important;
+}
+.stTextInput > div > div > input:focus {
+    border-color: #999080 !important;
+    box-shadow: 0 0 0 3px rgba(26,24,20,0.08) !important;
+}
+
+/* ========== CODE BLOCK ========== */
+.stCodeBlock {
+    border-radius: 10px !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* ========== DATAFRAME ========== */
+[data-testid="stDataFrame"] {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* ========== ALERTS / INFO BOXES ========== */
+[data-testid="stAlert"] {
+    border-radius: 12px !important;
+    border-left-width: 4px !important;
+}
+
+/* ========== TOGGLE ========== */
+[data-testid="stToggle"] label {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: var(--text-muted) !important;
+}
+
+/* ========== DIVIDER ========== */
+hr {
+    border-color: var(--border) !important;
+    opacity: 0.8 !important;
+}
+
+/* ========== RADIO ========== */
+[data-testid="stRadio"] label {
+    color: var(--text) !important;
+}
+
+/* ========== CAPTION ========== */
+.stCaption, [data-testid="stCaptionContainer"] {
+    color: var(--text-muted) !important;
+}
+
+/* ========== PLOTLY CHARTS ========== */
+.js-plotly-plot {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+/* ========== SUCCESS / WARNING / ERROR ========== */
+[data-testid="stSuccess"] {
+    background: #F0FBF4 !important;
+    border-left: 4px solid #2E7D52 !important;
+    color: #1A4A30 !important;
+    border-radius: 12px !important;
+}
+[data-testid="stWarning"] {
+    background: #FFFBF0 !important;
+    border-left: 4px solid #B45309 !important;
+    color: #6B3A12 !important;
+    border-radius: 12px !important;
+}
+[data-testid="stError"] {
+    border-radius: 12px !important;
+}
+[data-testid="stInfo"] {
+    background: #F5F0E8 !important;
+    border-left: 4px solid #7A7060 !important;
+    border-radius: 12px !important;
+}
