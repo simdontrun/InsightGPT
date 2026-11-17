@@ -82,6 +82,27 @@ InsightGPT bridges the gap between traditional business intelligence and generat
 
 ![InsightGPT System Architecture](architecture.png)
 
+## Application Showcase
+
+### Business Intelligence Dashboard
+![BI Dashboard](dashboard.png)
+
+### Natural Language to SQL
+![AI Analytics](ai_analytics.png)
+
+### AI Root Cause Analysis
+![Root Cause Analysis](root_cause.png)
+
+### AI-Powered Business Recommendations
+![Business Recommendations](recommendations.png)
+
+### Predictive Revenue Forecasting
+![Revenue Forecasting](forecast.png)
+
+### Document Intelligence (RAG)
+![Document Intelligence](rag.png)
+
+
 ## Business Insights
 
 - The West region generates the highest total revenue of approximately $725K.
