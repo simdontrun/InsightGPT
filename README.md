@@ -80,25 +80,41 @@ InsightGPT bridges the gap between traditional business intelligence and generat
 
 ## System Architecture
 
-```mermaid
-flowchart TD
-    A[Raw Sales Dataset] --> B[Data Ingestion and ETL]
-    B --> C[SQLite Database]
-    C --> D[Business Intelligence Dashboard]
-    C --> E[Natural Language SQL]
-    C --> F[Root Cause Analysis]
-    C --> G[Sales Forecasting]
-    F --> H[AI Recommendations]
-    I[PDF Documents] --> J[RAG Pipeline]
-    J --> K[FAISS Vector Store]
-    K --> L[Document Q&A]
-    D --> M[Streamlit Application]
-    E --> M
-    F --> M
-    G --> M
-    H --> M
-    L --> M
-    M --> N[Executive Reporting]
+```text
+Raw Sales Dataset
+        |
+        v
+Data Ingestion & ETL (Pandas)
+        |
+        v
+    SQLite Database
+        |
+        +-- Business Intelligence Dashboard
+        |
+        +-- Natural Language to SQL
+        |
+        +-- AI Root Cause Analysis
+        |
+        +-- AI Business Recommendations
+        |
+        +-- Revenue Forecasting (Prophet)
+
+PDF Documents
+        |
+        v
+Document Processing (PyPDF)
+        |
+        v
+RAG Pipeline (LangChain + FAISS)
+        |
+        v
+AI Document Intelligence
+
+=========================================
+       Streamlit Application
+       Google Gemini AI Integration
+       Executive PDF Reporting
+=========================================
 ```
 
 ## Business Insights
