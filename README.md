@@ -1,63 +1,170 @@
-# InsightGPT
+# InsightGPT — AI-Powered Business Intelligence Platform
 
-AI-Powered Decision Intelligence Platform
+An end-to-end AI analytics and decision intelligence platform that transforms raw sales data into actionable business insights.
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Launch_App-2ea44f)](https://insightgpt-hgu3rbo8wpmnabsuabfntn.streamlit.app/)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4)
+![Plotly](https://img.shields.io/badge/Plotly-3F4F75)
 
 ## Overview
 
-InsightGPT is a full-stack AI analytics platform that lets business users explore sales data using natural language, automated root-cause analysis, AI-generated recommendations, time-series forecasting, and document Q&A — all from a single Streamlit dashboard.
+InsightGPT bridges the gap between traditional business intelligence and generative AI by enabling businesses to analyze performance, identify financial risks, forecast sales and explore business documents through a unified analytics platform.
 
-The platform combines:
+## Key Business Metrics
 
-- Data Engineering & ETL
-- Business Intelligence Dashboard
-- Natural Language → SQL (Gemini AI)
-- AI Root Cause Analysis
-- AI Recommendation Engine
-- 30-Day Sales Forecasting (Prophet)
-- Document Intelligence / RAG (FAISS + HuggingFace + Gemini)
+| Metric | Value |
+|---|---:|
+| Records Analyzed | 9,994 |
+| Total Revenue | $2,297,200.86 |
+| Total Profit | $286,397.02 |
+| Profit Margin | 12.47% |
+| Forecasting Horizon | 30 Days |
 
----
+## Key Features
 
-## Quick Start
+### 1. Business Intelligence Dashboard
+- Interactive KPI dashboard
+- Regional and category-wise revenue analysis
+- Product-level profitability analysis
+- Interactive Plotly visualizations
 
-### 1. Clone the repo
+### 2. Natural Language to SQL
+- Converts business questions into SQL queries using Gemini AI
+- Executes queries against a SQLite database
+- Generates human-readable business interpretations
 
-```bash
-git clone https://github.com/your-username/InsightGPT.git
-cd InsightGPT
-```
+### 3. AI Root Cause Analysis
+- Identifies loss-making product groups
+- Analyzes revenue, profit, discounts and sales quantity
+- Generates executive-level business insights
 
-### 2. Install dependencies
+### 4. AI Recommendation Engine
+- Generates actionable business recommendations
+- Identifies pricing and discount optimization opportunities
+- Prioritizes potential business interventions
 
-```bash
-pip install -r requirements.txt
-```
+### 5. Predictive Sales Analytics
+- Time-series forecasting using Prophet
+- 30-day sales predictions
+- Interactive forecast charts with uncertainty intervals
 
-### 3. Set up your Gemini API key
+### 6. Document Intelligence (RAG)
+- PDF document processing
+- Semantic information retrieval using FAISS
+- AI-powered document question answering
+- Retrieval-Augmented Generation
 
-Create a `.env` file in the project root:
+### 7. Executive Report Generation
+- Automated business performance summaries
+- AI-generated analysis and recommendations
+- Downloadable PDF reports
 
-```
-GEMINI_API_KEY=your_gemini_api_key_here
-```
+## Technology Stack
 
-Get a free key at [https://aistudio.google.com](https://aistudio.google.com)
-
-### 4. Run the app
-
-```bash
-streamlit run app.py
-```
-
-The database is created automatically on first launch — no setup required.
-The app seeds a local SQLite database from `data/raw/SampleSuperstore.csv` (9,994 rows).
-
----
-
-## Tech Stack
-
-| Layer | Technology |
+| Layer | Technologies |
 |---|---|
+| Programming | Python |
+| Data Processing | Pandas, NumPy |
+| Database | SQLite, SQL |
+| Visualization | Plotly |
+| Application Framework | Streamlit |
+| Generative AI | Google Gemini |
+| Forecasting | Prophet |
+| Document Intelligence | LangChain, FAISS, Hugging Face |
+| PDF Processing | PyPDF |
+| Version Control | Git, GitHub |
+| Deployment | Streamlit Community Cloud |
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A[Raw Sales Dataset] --> B[Data Ingestion and ETL]
+    B --> C[SQLite Database]
+    C --> D[Business Intelligence Dashboard]
+    C --> E[Natural Language SQL]
+    C --> F[Root Cause Analysis]
+    C --> G[Sales Forecasting]
+    F --> H[AI Recommendations]
+    I[PDF Documents] --> J[RAG Pipeline]
+    J --> K[FAISS Vector Store]
+    K --> L[Document Q&A]
+    D --> M[Streamlit Application]
+    E --> M
+    F --> M
+    G --> M
+    H --> M
+    L --> M
+    M --> N[Executive Reporting]
+```
+
+## Business Insights
+
+- The West region generates the highest total revenue of approximately $725K.
+- Technology is the highest revenue-generating category.
+- Tables, Bookcases and Supplies account for approximately $22.4K in combined losses.
+- Tables have an average discount rate of 26.13%, suggesting an opportunity to investigate discount and pricing strategies.
+
+## Project Structure
+
+```text
+InsightGPT/
+├── analytics/
+├── dashboard/
+├── data/
+├── database/
+├── forecasting/
+├── ingestion/
+├── nl_sql/
+├── rag/
+├── recommendations/
+├── reports/
+├── root_cause/
+├── app.py
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+## Live Application
+
+Explore the deployed application:
+
+[Launch InsightGPT](https://insightgpt-hgu3rbo8wpmnabsuabfntn.streamlit.app/)
+
+## Limitations and Future Improvements
+
+- Improve AI-generated SQL accuracy and validation.
+- Strengthen evidence-grounded AI responses.
+- Evaluate forecasting performance using MAE and RMSE.
+- Improve executive PDF report formatting.
+- Expand support for additional business datasets.
+- Improve reproducibility of local installation.
+
+## Skills Demonstrated
+
+- Exploratory Data Analysis
+- Data Engineering and ETL
+- SQL and Database Management
+- Business Intelligence
+- Data Visualization
+- Predictive Analytics
+- Generative AI Integration
+- Retrieval-Augmented Generation
+- Application Deployment
+
+## Author
+
+**Simran Rai**
+
+B.Tech — Computer Science and Engineering
+
+VIT Bhopal University
+
+[GitHub Profile](https://github.com/simdontrun)
 | Frontend | Streamlit, Plotly, Tabler Icons |
 | AI / LLM | Google Gemini 2.5 Flash Lite |
 | Forecasting | Prophet (Meta) |
