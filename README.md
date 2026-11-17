@@ -80,42 +80,7 @@ InsightGPT bridges the gap between traditional business intelligence and generat
 
 ## System Architecture
 
-```text
-Raw Sales Dataset
-        |
-        v
-Data Ingestion & ETL (Pandas)
-        |
-        v
-    SQLite Database
-        |
-        +-- Business Intelligence Dashboard
-        |
-        +-- Natural Language to SQL
-        |
-        +-- AI Root Cause Analysis
-        |
-        +-- AI Business Recommendations
-        |
-        +-- Revenue Forecasting (Prophet)
-
-PDF Documents
-        |
-        v
-Document Processing (PyPDF)
-        |
-        v
-RAG Pipeline (LangChain + FAISS)
-        |
-        v
-AI Document Intelligence
-
-=========================================
-       Streamlit Application
-       Google Gemini AI Integration
-       Executive PDF Reporting
-=========================================
-```
+![InsightGPT System Architecture](architecture.png)
 
 ## Business Insights
 
